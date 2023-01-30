@@ -1,0 +1,6 @@
+defog
+requests
+psycopg2-binary
+mysql-connector-python
+pymongo
+google-cloud-bigquery
