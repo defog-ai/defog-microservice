@@ -2,9 +2,9 @@ import functions_framework
 from defog import Defog
 
 defog = Defog(
-    api_key = "YOUR_DEFOG_API_KEY",
-    db_type = "YOUR_DB_TYPE",
-    db_creds = YOUR_DB_CREDs,
+    api_key = "YOUR_API_KEY",
+    db_type = "YOUR_DB",
+    db_creds = YOUR_DB_CREDS,
 )
 
 @functions_framework.http
