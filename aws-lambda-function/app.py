@@ -2,6 +2,7 @@ from chalice import Chalice
 app = Chalice(app_name='defog-demo')
 
 from defog import Defog
+import json
 
 defog = Defog(
     api_key = "DEFOG_API_KEY",
@@ -13,6 +14,10 @@ defog = Defog(
 def answer():
     # This is the JSON body the user sent in their POST request.
     query = app.current_request.json_body
-    answer = defog.run_query(query['question'])
-    # We'll echo the json body back to the user in a 'user' key.
+    previous_context = query.get('previous_context')
+    if previous_context:
+        previous_context = []
+
+    answer = defog.run_query(query['question'], previous_context=previous_context)
+    answer = json.dumps(answer, default=str)
     return answer

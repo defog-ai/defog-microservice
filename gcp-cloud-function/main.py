@@ -1,10 +1,11 @@
 import functions_framework
 from defog import Defog
+import json
 
 defog = Defog(
     api_key = "YOUR_API_KEY",
-    db_type = "YOUR_DB",
-    db_creds = YOUR_DB_CREDS,
+    db_type = "YOUR_DB_TYPE",
+    db_creds = YOUR_DB_CREDS
 )
 
 @functions_framework.http
@@ -27,6 +28,12 @@ def hello_http(request):
     }
     request_json = request.get_json(force=True)
     question = request_json.get('question')
-    answer = defog.run_query(question)
-    # this is a dictionary with the keys `columns`, `data`, `generate_query`, and `is_successful`
+    previous_context = request_json.get('previous_context')
+    
+    if previous_context:
+        previous_context = []
+
+    answer = defog.run_query(question, previous_context = previous_context)
+    answer = json.dumps(answer, default=str)
+    # this is a dictionary with the keys `columns`, `data`, `previous_context`, `generate_query`, `is_successful`, `reason_for_query`, `suggestion_for_further_questions`
     return (answer, 200, headers)
