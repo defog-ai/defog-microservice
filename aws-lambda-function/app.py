@@ -15,7 +15,7 @@ def answer():
     # This is the JSON body the user sent in their POST request.
     query = app.current_request.json_body
     previous_context = query.get('previous_context')
-    if previous_context:
+    if not previous_context:
         previous_context = []
 
     answer = defog.run_query(query['question'], previous_context=previous_context)
