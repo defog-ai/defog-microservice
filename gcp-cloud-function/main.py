@@ -28,12 +28,13 @@ def hello_http(request):
     }
     request_json = request.get_json(force=True)
     question = request_json.get('question')
+    hard_filters = request_json.get('hard_filters')
     previous_context = request_json.get('previous_context')
     
-    if previous_context:
+    if not previous_context:
         previous_context = []
 
-    answer = defog.run_query(question, previous_context = previous_context)
+    answer = defog.run_query(question, previous_context=previous_context, hard_filters=hard_filters)
     answer = json.dumps(answer, default=str)
     # this is a dictionary with the keys `columns`, `data`, `previous_context`, `generate_query`, `is_successful`, `reason_for_query`, `suggestion_for_further_questions`
     return (answer, 200, headers)
