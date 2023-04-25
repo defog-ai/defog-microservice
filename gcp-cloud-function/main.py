@@ -5,7 +5,7 @@ import json
 defog = Defog(
     api_key = "YOUR_API_KEY",
     db_type = "YOUR_DB_TYPE",
-    db_creds = YOUR_DB_CREDS
+    db_creds = "YOUR_DB_CREDS"
 )
 
 @functions_framework.http

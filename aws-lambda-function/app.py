@@ -5,9 +5,9 @@ from defog import Defog
 import json
 
 defog = Defog(
-    api_key = "83d670e8f8702c988ed961ae0a17e3f79c02f886158b757d14f08e71296fc638",
-    db_type = "postgres",
-    db_creds = { "host": 'redshift-cluster-1.cbhvnw9silab.us-west-2.redshift.amazonaws.com', "port": 5439, "database": 'dev', "user": 'defoguser', "password": 'defog0xPass' }
+    api_key = "YOUR_API_KEY",
+    db_type = "YOUR_DB_TYPE",
+    db_creds = "YOUR_DB_CREDS"
 )
 
 @app.route('/', methods=['POST'])
